@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Home</h1>
+    <div id="welcome">
+      <h3>Hi there, welcome to MyPlantList.<br/>Take a look around and make the list of plants you want or have.
+      <br/>Here are all of the plants that have already been added!</h3>
+    </div>
+    <PlantList :data="allPlants"/>
+   
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import PlantList from "../components/PlantList.vue"
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    PlantList
+  },
+  computed: {
+    allPlants() {
+      return this.$root.$data.base.concat(this.$root.$data.added)
+    }
   }
 }
 </script>
